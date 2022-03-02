@@ -29,12 +29,13 @@ public class InfrastructureTest {
 	@Test
 	void firstTest() {
 		request()
-			.get("/test?query=param")
+			.get("/test?param=value")
 			.then()
 			.statusCode(200)
 			.body("host.hostname", equalTo("localhost"))
 			.body("http.method", equalTo("GET"))
-			.body("params.0", equalTo("GET"));
+			.body("request.params.0", equalTo("/test"))
+			.body("request.query.param", equalTo("value"));
 	}
 
 	private RequestSpecification request() {
