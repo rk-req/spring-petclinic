@@ -17,8 +17,7 @@ import java.time.Duration;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-	classes = PetClinicApplication.class,
-	args = "-Dspring.profiles.active=postgres")
+	classes = PetClinicApplication.class)
 @Testcontainers
 public class PetClinicTest {
 
