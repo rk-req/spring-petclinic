@@ -28,9 +28,9 @@
       </tr>
     </table>
   
-    <a th:href="@{{id}/edit(id=${owner.id})}" class="btn btn-primary">Edit
+    <a data-id='edit-owner-btn' th:href="@{{id}/edit(id=${owner.id})}" class="btn btn-primary">Edit
       Owner</a>
-    <a th:href="@{{id}/pets/new(id=${owner.id})}" class="btn btn-primary">Add
+    <a data-id='add-new-pet-btn' th:href="@{{id}/pets/new(id=${owner.id})}" class="btn btn-primary">Add
       New Pet</a>
   
     <br />
