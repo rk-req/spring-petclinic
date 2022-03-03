@@ -34,10 +34,6 @@ public class PetClinicTest {
 	public void open() {
 		serviceUrl = String.format("http://%s:%d", "host.docker.internal", port);
 		webDriver = webDriverContainer.getRemoteWebdriver();
-		webDriver.manage().window().maximize();
-		webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5))
-			.implicitlyWait(Duration.ofSeconds(5))
-			.scriptTimeout(Duration.ofSeconds(5));
 	}
 
 	@Test

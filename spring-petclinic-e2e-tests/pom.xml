@@ -136,7 +136,8 @@
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
-      <version>1.2</version> <!-- Required for RestAssured/HttpClient otherwise NoClassFound is thrown, probably it's excluded somewhere-->
+      <version>1.2
+      </version> <!-- Required for RestAssured/HttpClient otherwise NoClassFound is thrown, probably it's excluded somewhere-->
       <scope>test</scope>
     </dependency>
     <dependency>

@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.time.Duration;
 import java.util.List;
 
 public class ChromiumWebDriverContainer extends GenericContainer<ChromiumWebDriverContainer> {
@@ -56,7 +57,12 @@ public class ChromiumWebDriverContainer extends GenericContainer<ChromiumWebDriv
 
 	public WebDriver getRemoteWebdriver() {
 		try {
-			return new RemoteWebDriver(seleniumUrl.toURL(), capabilities);
+			var webDriver = new RemoteWebDriver(seleniumUrl.toURL(), capabilities);
+			webDriver.manage().window().maximize();
+			webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5))
+				.implicitlyWait(Duration.ofSeconds(5))
+				.scriptTimeout(Duration.ofSeconds(5));
+			return webDriver;
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);
 		}
