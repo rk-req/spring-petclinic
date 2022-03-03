@@ -52,6 +52,8 @@
       <groupId>org.springframework.samples</groupId>
       <artifactId>spring-petclinic-server</artifactId>
       <version>${project.version}</version>
+      <classifier>original</classifier>
+      <scope>compile</scope>
       <exclusions>
         <exclusion>
           <groupId>ch.qos.logback</groupId>

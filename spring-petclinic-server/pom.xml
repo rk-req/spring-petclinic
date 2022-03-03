@@ -209,7 +209,39 @@
           </buildArgs>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <configuration>
+          <file>target/${project.build.finalName}.jar.original</file>
+          <artifactId>${project.artifactId}</artifactId>
+          <groupId>${project.groupId}</groupId>
+          <classifier>original</classifier>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <configuration>
+            <shadedClassifierName>shaded</shadedClassifierName>
+          </configuration>
+
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
 </project>
