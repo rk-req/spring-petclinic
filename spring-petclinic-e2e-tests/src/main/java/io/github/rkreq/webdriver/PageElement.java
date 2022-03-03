@@ -2,6 +2,7 @@ package io.github.rkreq.webdriver;
 
 import com.google.common.base.Suppliers;
 import org.assertj.core.api.AbstractAssert;
+import org.assertj.core.api.BooleanAssert;
 import org.assertj.core.api.StringAssert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +17,15 @@ public class PageElement {
 	private final Supplier<WebElement> webElement;
 	private final By locator;
 	private final String elementDescription;
+	private final PageElementFactory pageElementFactory;
 
-	public PageElement(WebDriver webDriver, By locator, String elementDescription) {
+	public PageElement(WebDriver webDriver, By locator, String elementDescription,
+		PageElementFactory pageElementFactory) {
 		this.webDriver = webDriver;
 		this.locator = locator;
 		this.webElement = Suppliers.memoize(() -> webDriver.findElement(locator));
 		this.elementDescription = elementDescription;
+		this.pageElementFactory = pageElementFactory;
 	}
 
 	public WebElement webElement() {
@@ -37,6 +41,10 @@ public class PageElement {
 		return this;
 	}
 
+	public boolean isDisplayed() {
+		return webElement().isDisplayed();
+	}
+
 	public String getAttribute(String attributeName) {
 		return webElement().getAttribute(attributeName);
 	}
@@ -47,6 +55,10 @@ public class PageElement {
 
 	public String getTagName() {
 		return webElement().getTagName();
+	}
+
+	public PageElementList asList() {
+		return pageElementFactory.createList(locator, elementDescription);
 	}
 
 	public Asserter verify() {
@@ -63,6 +75,12 @@ public class PageElement {
 			Function<PageElement, String> propertyProvider) {
 			return as(() -> elementDescription + " " + propertyName)
 				.extracting(propertyProvider, StringAssert::new);
+		}
+
+		protected BooleanAssert assertBooleanProperty(String propertyName,
+			Function<PageElement, Boolean> propertyProvider) {
+			return as(() -> elementDescription + " " + propertyName)
+				.extracting(propertyProvider, BooleanAssert::new);
 		}
 
 		public StringAssert assertText() {
@@ -91,6 +109,12 @@ public class PageElement {
 
 		public StringAssert assertImageSrc() {
 			return hasTag("img").assertAttribute("src");
+		}
+
+		public Asserter isDisplayed() {
+			assertBooleanProperty("displayed", PageElement::isDisplayed)
+				.isTrue();
+			return this;
 		}
 	}
 }

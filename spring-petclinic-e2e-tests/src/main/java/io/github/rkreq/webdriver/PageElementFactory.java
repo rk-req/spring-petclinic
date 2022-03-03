@@ -16,7 +16,7 @@ public class PageElementFactory {
 	}
 
 	public PageElement create(By locator, String elementDescription) {
-		return new PageElement(webDriver,locator,elementDescription);
+		return new PageElement(webDriver, locator, elementDescription, this);
 	}
 
 	public PageElementList createList(By locator, String elementDescription) {

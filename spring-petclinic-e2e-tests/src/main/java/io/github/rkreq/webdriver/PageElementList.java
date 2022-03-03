@@ -58,5 +58,10 @@ public class PageElementList {
 			textAssert().containsOnly(expectedText);
 			return this;
 		}
+
+		public Asserter hasSize(int expectedSize) {
+			Assertions.assertThat(webElements()).hasSize(expectedSize);
+			return this;
+		}
 	}
 }
