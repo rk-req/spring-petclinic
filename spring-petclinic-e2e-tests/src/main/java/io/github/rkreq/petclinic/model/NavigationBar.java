@@ -1,11 +1,11 @@
 package io.github.rkreq.petclinic.model;
 
-import io.github.rkreq.webdriver.asserters.PageElementsAssert;
-import io.github.rkreq.webdriver.components.PageComponent;
-import io.github.rkreq.webdriver.PageElements;
 import io.github.rkreq.webdriver.PageElement;
 import io.github.rkreq.webdriver.PageElementFactory;
 import io.github.rkreq.webdriver.PageElementList;
+import io.github.rkreq.webdriver.PageElements;
+import io.github.rkreq.webdriver.asserters.PageElementsAssert;
+import io.github.rkreq.webdriver.components.PageComponent;
 
 import static org.openqa.selenium.By.cssSelector;
 
@@ -19,14 +19,14 @@ public class NavigationBar extends PageComponent<NavigationBar, NavigationBar.Na
 		return new Asserter();
 	}
 
-	public NavigationBar openHome() {
+	public WelcomePage openHome() {
 		pageElements().homeLink().click();
-		return this;
+		return new WelcomePage(getPageElementFactory());
 	}
 
-	public NavigationBar openOwners() {
+	public OwnersPageTable openOwners() {
 		pageElements().ownersLink().click();
-		return this;
+		return new OwnersPageTable(getPageElementFactory());
 	}
 
 	public NavigationBar openFindOwners() {

@@ -1,7 +1,7 @@
 package io.github.rkreq.petclinic.model;
 
-import io.github.rkreq.webdriver.asserters.PageAsserter;
 import io.github.rkreq.webdriver.PageElementFactory;
+import io.github.rkreq.webdriver.asserters.PageAsserter;
 import org.openqa.selenium.WebDriver;
 
 public class PetClinicPages {
@@ -26,4 +26,7 @@ public class PetClinicPages {
 		return new PageAsserter(webDriver);
 	}
 
+	public OwnersPageTable ownersPageTable() {
+		return new OwnersPageTable(pageElementFactory);
+	}
 }

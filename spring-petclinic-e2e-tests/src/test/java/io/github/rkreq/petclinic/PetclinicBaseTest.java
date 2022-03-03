@@ -2,10 +2,9 @@ package io.github.rkreq.petclinic;
 
 import io.github.rkreq.docker.ChromiumWebDriverContainer;
 import io.github.rkreq.petclinic.model.PetClinicPages;
-import org.assertj.core.api.Assertions;
+import io.github.rkreq.webdriver.asserters.PageAsserter;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +28,7 @@ public class PetclinicBaseTest {
 	protected static WebDriver webDriver;
 	protected String serviceUrl;
 	protected PetClinicPages petClinicPages;
+	protected PageAsserter pageAsserter;
 
 	@BeforeAll
 	public static void initWebdriver() {
@@ -41,6 +41,7 @@ public class PetclinicBaseTest {
 		serviceUrl = String.format("http://%s:%d", "host.docker.internal", port);
 		webDriver.get(serviceUrl);
 		petClinicPages = new PetClinicPages(webDriver);
+		pageAsserter = new PageAsserter(webDriver);
 	}
 
 }
