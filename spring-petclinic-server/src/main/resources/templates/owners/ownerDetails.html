@@ -9,7 +9,7 @@
     <h2>Owner Information</h2>
   
   
-    <table class="table table-striped" th:object="${owner}">
+    <table data-id="owner-information-table" class="table table-striped" th:object="${owner}">
       <tr>
         <th>Name</th>
         <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
