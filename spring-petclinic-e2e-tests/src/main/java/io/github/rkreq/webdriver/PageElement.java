@@ -41,6 +41,11 @@ public class PageElement {
 		return this;
 	}
 
+	public PageElement withText(String text) {
+		webElement().sendKeys(text);
+		return this;
+	}
+
 	public boolean isDisplayed() {
 		return webElement().isDisplayed();
 	}

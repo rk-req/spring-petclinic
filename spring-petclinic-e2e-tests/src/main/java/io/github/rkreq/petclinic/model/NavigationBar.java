@@ -29,9 +29,9 @@ public class NavigationBar extends PageComponent<NavigationBar, NavigationBar.Na
 		return new OwnersPageTable(getPageElementFactory());
 	}
 
-	public NavigationBar openFindOwners() {
+	public FindOwnerPage openFindOwners() {
 		pageElements().findOwnersLink().click();
-		return this;
+		return new FindOwnerPage(getPageElementFactory());
 	}
 
 	public NavigationBar openVeterinarians() {

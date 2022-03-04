@@ -45,6 +45,12 @@ public class PetClinicOwnersPageTableTest extends PetclinicBaseTest {
 
 		//then
 		ownerInformationPage.verify()
-			.hasText(OwnerInformationPage.Elements::header, "Owner Information");
+			.hasText(OwnerInformationPage.Elements::header, "Owner Information")
+			.assertOwnerInformation()
+			.hasSize(4)
+			.containsEntry("Name", "Harold Davis")
+			.containsEntry("Address", "563 Friendly St.")
+			.containsEntry("City", "Windsor")
+			.containsEntry("Telephone", "6085553198");
 	}
 }

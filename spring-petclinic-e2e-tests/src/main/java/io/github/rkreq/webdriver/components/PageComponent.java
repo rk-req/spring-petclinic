@@ -1,10 +1,13 @@
 package io.github.rkreq.webdriver.components;
 
+import io.github.rkreq.webdriver.PageElement;
+import io.github.rkreq.webdriver.PageElementFactory;
 import io.github.rkreq.webdriver.PageElements;
 import io.github.rkreq.webdriver.asserters.PageElementsAssert;
-import io.github.rkreq.webdriver.PageElementFactory;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
+
+import java.util.function.Function;
 
 public abstract class PageComponent<ThisType extends PageComponent<ThisType, ElementsType, AsserterType>,
 	ElementsType extends PageElements,
@@ -36,5 +39,10 @@ public abstract class PageComponent<ThisType extends PageComponent<ThisType, Ele
 	@NotNull
 	protected ThisType myself() {
 		return (ThisType) this;
+	}
+
+	public ThisType withValue(Function<ElementsType, PageElement> element, String value) {
+		element.apply(pageElements()).withText(value);
+		return myself();
 	}
 }
